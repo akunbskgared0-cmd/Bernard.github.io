@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bernard MurBand</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            text-align: center;
+            padding: 30px 20px 20px;
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            border-radius: 20px 20px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            animation: shimmer 10s infinite linear;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .header h1 {
+            font-size: 42px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 span {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0 15px;
+            border-radius: 10px;
+        }
+
+        .header .subtitle {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 16px;
+            margin-top: 8px;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .subtitle i {
+            font-style: normal;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 12px;
+            border-radius: 20px;
+        }
+
+        /* ===== FLAG DECORATION ===== */
+        .flag-decoration {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 0;
+            background: #f5f5f5;
+        }
+
+        .flag-decoration .stripe {
+            width: 40px;
+            height: 6px;
+            border-radius: 3px;
+        }
+
+        .flag-decoration .stripe.red {
+            background: #ff0000;
+        }
+        .flag-decoration .stripe.white {
+            background: #ffffff;
+            border: 1px solid #ddd;
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #f8f8f8;
+            border-radius: 0 0 20px 20px;
+            padding: 30px 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        /* ===== PACKAGE GRID ===== */
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 10px;
+        }
+
+        /* ===== PACKAGE CARD ===== */
+        .package-card {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 2px solid #e8e8e8;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .package-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            border-color: #ff0000;
+        }
+
+        .package-card .card-header {
+            padding: 18px 20px 14px;
+            text-align: center;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .package-card .card-header .badge {
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .package-card .card-header .badge.populer {
+            background: #ff0000;
+            color: #fff;
+        }
+
+        .package-card .card-header .badge.pro {
+            background: #cc0000;
+            color: #fff;
+        }
+
+        .package-card .card-header .badge.partner {
+            background: #990000;
+            color: #fff;
+        }
+
+        .package-card .card-header h2 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+
+        .package-card .card-header h2 .highlight {
+            color: #ff0000;
+        }
+
+        /* ===== PRICE ===== */
+        .price-section {
+            text-align: center;
+            padding: 20px 20px 16px;
+            background: linear-gradient(180deg, #fafafa, #ffffff);
+        }
+
+        .price-section .price {
+            font-size: 38px;
+            font-weight: 900;
+            color: #1a1a1a;
+        }
+
+        .price-section .price .currency {
+            font-size: 20px;
+            color: #666;
+        }
+
+        .price-section .price .amount {
+            color: #ff0000;
+        }
+
+        .price-section .price .period {
+            font-size: 14px;
+            color: #888;
+            font-weight: 400;
+        }
+
+        .price-section .divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff0000, #cc0000);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ===== BENEFITS ===== */
+        .benefits {
+            padding: 16px 20px 20px;
+        }
+
+        .benefits .benefit-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .benefits ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefits ul li {
+            padding: 8px 0 8px 32px;
+            position: relative;
+            font-size: 14px;
+            color: #333;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 1.5;
+        }
+
+        .benefits ul li:last-child {
+            border-bottom: none;
+        }
+
+        .benefits ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            color: #ff0000;
+            font-weight: 900;
+            font-size: 16px;
+        }
+
+        .benefits ul li .highlight {
+            color: #ff0000;
+            font-weight: 700;
+        }
+
+        /* ===== STRUCTURE ===== */
+        .structure {
+            padding: 0 20px 16px;
+        }
+
+        .structure .struct-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .structure .struct-box {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 12px;
+            color: #555;
+            border-left: 3px solid #ff0000;
+            font-family: 'Courier New', monospace;
+            line-height: 1.8;
+        }
+
+        .structure .struct-box .step {
+            color: #ff0000;
+            font-weight: 700;
+        }
+
+        /* ===== BUTTON ===== */
+        .btn-join {
+            display: block;
+            margin: 0 20px 20px;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .btn-join:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(255, 0, 0, 0.4);
+            background: linear-gradient(135deg, #ff1a1a, #cc0000);
+        }
+
+        .btn-join:active {
+            transform: scale(0.98);
+        }
+
+        .btn-join .icon {
+            margin-right: 8px;
+        }
+
+        /* ===== MODAL / POPUP KONTAK ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-content {
+            background: #ffffff;
+            border-radius: 24px;
+            max-width: 440px;
+            width: 90%;
+            padding: 35px 30px 30px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-content .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            color: #999;
+            cursor: pointer;
+            transition: 0.3s;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+
+        .modal-content .modal-close:hover {
+            color: #ff0000;
+            transform: rotate(90deg);
+        }
+
+        .modal-content .modal-icon {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+
+        .modal-content .modal-title {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .modal-content .modal-subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .modal-content .modal-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff0000, transparent);
+            margin: 0 0 20px 0;
+        }
+
+        /* ===== CONTACT BUTTONS ===== */
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 20px;
+            border-radius: 14px;
+            border: 2px solid #e8e8e8;
+            background: #fafafa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #1a1a1a;
+        }
+
+        .contact-btn:hover {
+            border-color: #ff0000;
+            background: #fff5f5;
+            transform: translateX(6px);
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.1);
+        }
+
+        .contact-btn .contact-icon {
+            font-size: 32px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .contact-btn .contact-icon.whatsapp {
+            background: #25D366;
+            color: #fff;
+        }
+
+        .contact-btn .contact-icon.telegram {
+            background: #0088cc;
+            color: #fff;
+        }
+
+        .contact-btn .contact-info {
+            flex: 1;
+        }
+
+        .contact-btn .contact-info .name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .contact-btn .contact-info .detail {
+            font-size: 13px;
+            color: #888;
+        }
+
+        .contact-btn .contact-arrow {
+            font-size: 20px;
+            color: #ccc;
+            transition: 0.3s;
+        }
+
+        .contact-btn:hover .contact-arrow {
+            color: #ff0000;
+            transform: translateX(4px);
+        }
+
+        /* ===== CARD BORDER COLOR ===== */
+        .package-card.premium {
+            border-color: #ff0000;
+            box-shadow: 0 4px 25px rgba(255, 0, 0, 0.1);
+        }
+
+        .package-card.premium:hover {
+            border-color: #cc0000;
+            box-shadow: 0 12px 45px rgba(255, 0, 0, 0.2);
+        }
+
+        .package-card.private {
+            border-color: #cc3333;
+        }
+
+        .package-card.private:hover {
+            border-color: #ff0000;
+        }
+
+        .package-card.partner {
+            border-color: #990000;
+            background: linear-gradient(180deg, #ffffff, #fff5f5);
+        }
+
+        .package-card.partner:hover {
+            border-color: #ff0000;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 25px 20px 10px;
+            border-top: 2px solid #f0f0f0;
+            margin-top: 20px;
+        }
+
+        .footer .footer-text {
+            font-size: 13px;
+            color: #888;
+            letter-spacing: 1px;
+        }
+
+        .footer .footer-text .red {
+            color: #ff0000;
+            font-weight: 700;
+        }
+
+        .footer .footer-text .white {
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .footer .flag-small {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin-top: 8px;
+        }
+
+        .footer .flag-small .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .footer .flag-small .dot.red {
+            background: #ff0000;
+        }
+        .footer .flag-small .dot.white {
+            background: #ffffff;
+            border: 1px solid #ddd;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 30px;
+                letter-spacing: 1px;
+            }
+
+            .package-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .container {
+                padding: 20px 12px;
+            }
+
+            .price-section .price {
+                font-size: 32px;
+            }
+
+            .benefits ul li {
+                font-size: 13px;
+                padding: 6px 0 6px 28px;
+            }
+
+            .benefits ul li::before {
+                top: 6px;
+                font-size: 14px;
+            }
+
+            .btn-join {
+                font-size: 14px;
+                padding: 12px 16px;
+            }
+
+            .modal-content {
+                padding: 25px 20px 20px;
+            }
+
+            .contact-btn {
+                padding: 14px 16px;
+            }
+
+            .contact-btn .contact-icon {
+                font-size: 26px;
+                width: 42px;
+                height: 42px;
+            }
+
+            .contact-btn .contact-info .name {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .header .subtitle {
+                font-size: 13px;
+            }
+
+            .package-card .card-header h2 {
+                font-size: 17px;
+            }
+
+            .price-section .price {
+                font-size: 28px;
+            }
+
+            .structure .struct-box {
+                font-size: 11px;
+                padding: 10px 14px;
+            }
+
+            .modal-content .modal-title {
+                font-size: 18px;
+            }
+
+            .contact-btn {
+                padding: 12px 14px;
+            }
+
+            .contact-btn .contact-icon {
+                font-size: 22px;
+                width: 36px;
+                height: 36px;
+            }
+
+            .contact-btn .contact-info .name {
+                font-size: 13px;
+            }
+
+            .contact-btn .contact-info .detail {
+                font-size: 11px;
+            }
+        }
+
+        /* ===== ANIMATION ===== */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .package-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .package-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        .package-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .package-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+    </style>
+</head>
+<body> <!-- ===== HEADER ===== -->
+    <div class="header">
+        <h1>🇮🇩 BERNARD <span>MURBAND</span></h1>
+        <div class="subtitle">
+            <i>🔥 Solusi Band Terbaik Se-Indonesia 🔥</i>
+        </div>
+    </div>
+
+    <!-- ===== FLAG DECORATION ===== -->
+    <div class="flag-decoration">
+        <span class="stripe red"></span>
+        <span class="stripe white"></span>
+        <span class="stripe red"></span>
+        <span class="stripe white"></span>
+        <span class="stripe red"></span>
+        <span class="stripe white"></span>
+        <span class="stripe red"></span>
+        <span class="stripe white"></span>
+        <span class="stripe red"></span>
+        <span class="stripe white"></span>
+        <span class="stripe red"></span>
+        <span class="stripe white"></span>
+    </div>
+
+    <!-- ===== CONTAINER ===== -->
+    <div class="container">
+
+        <!-- ===== PACKAGE GRID ===== -->
+        <div class="package-grid">
+
+            <!-- ===== PACKAGE 1: MURID BAND WHATSAPP ===== -->
+            <div class="package-card">
+                <div class="card-header">
+                    <span class="badge populer">⭐ POPULER</span>
+                    <h2>📱 MURID BAND <span class="highlight">WHATSAPP</span></h2>
+                </div>
+
+                <div class="price-section">
+                    <div class="price">
+                        <span class="currency">Rp</span>
+                        <span class="amount">10.000</span>
+                        <span class="period">/ paket</span>
+                    </div>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="benefits">
+                    <div class="benefit-title">✦ BENEFIT ✦</div>
+                    <ul>
+                        <li>✓ Get trick band WhatsApp</li>
+                        <li>✓ Get trick 2 nomor <span class="highlight">(tanpa nomor old)</span></li>
+                        <li>✓ Get trick FakeChat New</li>
+                        <li>✓ Free update MT band</li>
+                        <li>✓ Dapet bahan lengkap</li>
+                        <li>✓ DLL</li>
+                    </ul>
+                </div>
+
+                <div class="structure">
+                    <div class="struct-title">📋 STRUKTUR PEMBELIAN</div>
+                    <div class="struct-box">
+                        <span class="step">1.</span> Transfer Rp 10.000 ke rekening yang tertera<br>
+                        <span class="step">2.</span> Konfirmasi pembayaran via WhatsApp<br>
+                        <span class="step">3.</span> Dapatkan akses full bahan & trick
+                    </div>
+                </div>
+
+                <button class="btn-join" onclick="openModal('Murid Band WhatsApp', 10000)">
+                    <span class="icon">🕊️</span> Join Sekarang
+                </button>
+            </div>
+
+            <!-- ===== PACKAGE 2: MURID BAND PRIVATE ===== -->
+            <div class="package-card private">
+                <div class="card-header">
+                    <span class="badge pro">🔥 PRO</span>
+                    <h2>🔒 MURID BAND <span class="highlight">PRIVATE</span></h2>
+                </div>
+
+                <div class="price-section">
+                    <div class="price">
+                        <span class="currency">Rp</span>
+                        <span class="amount">25.000</span>
+                        <span class="period">/ paket</span>
+                    </div>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="benefits">
+                    <div class="benefit-title">✦ BENEFIT ✦</div>
+                    <ul>
+                        <li>✓ Get trick ban WhatsApp</li>
+                        <li>✓ Get trick ban Telegram</li>
+                        <li>✓ Get trick ban Instagram</li>
+                        <li>✓ Get trick ban 2 nomor new</li>
+                        <li>✓ Get trick invisible ban</li>
+                        <li>✓ Get trick FakeChat New</li>
+                        <li>✓ Free update MT ban</li>
+                        <li>✓ Dapat bahan lengkap</li>
+                        <li>✓ DLL</li>
+                    </ul>
+                </div>
+
+                <div class="structure">
+                    <div class="struct-title">📋 STRUKTUR PEMBELIAN</div>
+                    <div class="struct-box">
+                        <span class="step">1.</span> Transfer Rp 25.000 ke rekening yang tertera<br>
+                        <span class="step">2.</span> Konfirmasi pembayaran via WhatsApp<br>
+                        <span class="step">3.</span> Dapatkan akses full bahan & trick private
+                    </div>
+                </div>
+
+                <button class="btn-join" onclick="openModal('Murid Band Private', 25000)">
+                    <span class="icon">🕊️</span> Join Sekarang
+                </button>
+            </div>
+
+            <!-- ===== PACKAGE 3: PT BAND BERNARD ===== -->
+            <div class="package-card partner">
+                <div class="card-header">
+                    <span class="badge partner">👑 PARTNER</span>
+                    <h2>🏢 PT BAND <span class="highlight">BERNARD</span></h2>
+                </div>
+
+                <div class="price-section">
+                    <div class="price">
+                        <span class="currency">Rp</span>
+                        <span class="amount">55.000</span>
+                        <span class="period">/ paket</span>
+                    </div>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="benefits">
+                    <div class="benefit-title">✦ BENEFIT PARTNER ✦</div>
+                    <ul>
+                        <li>✓ Menjadi <span class="highlight">partner ban Bernard</span></li>
+                        <li>✓ Bisa menjual <span class="highlight">murid ban</span></li>
+                        <li>✓ Bisa menjual <span class="highlight">murid ban private</span></li>
+                        <li>✓ <span class="highlight">Dijamin balik modal</span> (balmod)</li>
+                        <li>✓ Akses semua bahan premium</li>
+                        <li>✓ Support 24/7 dari tim Bernard</li>
+                    </ul>
+                </div>
+
+                <div class="structure">
+                    <div class="struct-title">📋 STRUKTUR PEMBELIAN</div>
+                    <div class="struct-box">
+                        <span class="step">1.</span> Transfer Rp 55.000 ke rekening yang tertera<br>
+                        <span class="step">2.</span> Konfirmasi pembayaran via WhatsApp<br>
+                        <span class="step">3.</span> Dapatkan akses partner & bahan lengkap<br>
+                        <span class="step">4.</span> Mulai jual dan dapatkan keuntungan!
+                    </div>
+                </div>
+
+                <button class="btn-join" onclick="openModal('PT Band Bernard Partner', 55000)">
+                    <span class="icon">🕊️</span> Join Sekarang
+                </button>
+            </div>
+
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <div class="footer">
+            <div class="footer-text">
+                🇮🇩 <span class="red">BERNARD</span> <span class="white">MURBAND</span> 🇮🇩<br>
+                <span style="font-size:11px;color:#aaa;">Solusi Band Terpercaya Se-Indonesia</span>
+            </div>
+            <div class="flag-small">
+                <span class="dot red"></span>
+                <span class="dot white"></span>
+                <span class="dot red"></span>
+                <span class="dot white"></span>
+                <span class="dot red"></span>
+                <span class="dot white"></span>
+                <span class="dot red"></span>
+                <span class="dot white"></span>
+            </div>
+            <div style="margin-top:12px;font-size:11px;color:#bbb;">
+                © 2026 Bernard MurBand · All Rights Reserved
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== MODAL / POPUP KONTAK ===== -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+
+            <div class="modal-icon">🕊️</div>
+            <div class="modal-title">PILIH KONTAK</div>
+            <div class="modal-subtitle" id="modalPackageInfo">Silakan pilih kontak untuk konfirmasi</div>
+            <div class="modal-divider"></div>
+
+            <div class="contact-list">
+
+                <!-- WhatsApp -->
+                <a class="contact-btn" href="https://wa.me/6285882891271?text=Halo%20Bernard%2C%20saya%20ingin%20join%20paket" target="_blank">
+                    <div class="contact-icon whatsapp">💬</div>
+                    <div class="contact-info">
+                        <div class="name">WhatsApp</div>
+                        <div class="detail">+6285882891271</div>
+                    </div>
+                    <div class="contact-arrow">→</div>
+                </a>
+
+                <!-- Telegram -->
+                <a class="contact-btn" href="https://t.me/Bernardstore_5" target="_blank">
+                    <div class="contact-icon telegram">✈️</div>
+                    <div class="contact-info">
+                        <div class="name">Telegram</div>
+                        <div class="detail">@Bernardstore_5</div>
+                    </div>
+                    <div class="contact-arrow">→</div>
+                </a>
+
+            </div>
+
+            <div style="text-align:center;margin-top:16px;font-size:11px;color:#bbb;">
+                Klik salah satu kontak di atas untuk melanjutkan
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT                                                   -->
+    <!-- ============================================================ -->
+    <script>
+        /**
+         * ============================================================
+         *  BERNARD MURBAND - WEB
+         *  Theme: Merah Putih
+         *  Version: 2.0
+         * ============================================================
+         */
+
+        let currentPackage = '';
+        let currentPrice = 0;
+
+        function openModal(packageName, price) {
+            currentPackage = packageName;
+            currentPrice = price;
+
+            const formattedPrice = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(price);
+
+            document.getElementById('modalPackageInfo').textContent =
+                `📦 ${packageName} · ${formattedPrice}`;
+
+            document.getElementById('contactModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Update WhatsApp link with package info
+            const waLink = document.querySelector('.contact-btn[href*="wa.me"]');
+            const message = `Halo Bernard, saya ingin join paket ${packageName} (${formattedPrice})`;
+            waLink.href = `https://wa.me/6285882891271?text=${encodeURIComponent(message)}`;
+
+            // Update Telegram link
+            const tgLink = document.querySelector('.contact-btn[href*="t.me"]');
+            tgLink.href = `https://t.me/Bernardstore_5`;
+
+            console.log(`🕊️ Open Modal: ${packageName} - ${formattedPrice}`);
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('contactModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // ========== SMOOTH SCROLL ==========
+        document.querySelectorAll('button[onclick^="openModal"]').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // Already handled by onclick
+            });
+        });
+
+        // ========== CONSOLE LOG ==========
+        console.log('🇮🇩 BERNARD MURBAND 🇮🇩');
+        console.log('🔥 Solusi Band Terbaik Se-Indonesia');
+        console.log('📦 Paket: WhatsApp (10K), Private (25K), Partner (55K)');
+        console.log('📱 Contact: +6285882891271 | @Bernardstore_5');
+
+        // ========== ANIMATION ON SCROLL ==========
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.package-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+
+        // ========== TRIGGER ANIMATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.querySelectorAll('.package-card').forEach(card => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                });
+            }, 300);
+        });
+
+        // ========== PREVENT CLOSE ON INSIDE CLICK ==========
+        document.querySelector('.modal-content').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    </script>
+
+</body>
+</html>
